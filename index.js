@@ -4,6 +4,7 @@ import connectDB from "./config/db.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import testRoutes from "./routes/testRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const corsConfig = {
   origin: "*",
@@ -54,6 +55,7 @@ try {
   await connectDB();
   console.log("MongoDB connected");
   app.use("/api/test", testRoutes);
+  app.use("/api/auth", authRoutes);
 } catch (error) {
   console.error("Failed to connect to MongoDB:", error);
   // Still start server but without DB routes
